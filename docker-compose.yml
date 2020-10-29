@@ -3,7 +3,6 @@ version: '3'
 volumes:
     nextcloud_db:
     nextcloud_data:
-    nextcloud_apps:
     nextcloud_config:
 
 services:
@@ -24,7 +23,6 @@ services:
         volumes:
             - nextcloud_data:/nextcloud/data
             - nextcloud_config:/nextcloud/config
-            - nextcloud_apps:/nextcloud/custom_apps
             - ./certs:/certs
         ports:
             - "9200:443"
