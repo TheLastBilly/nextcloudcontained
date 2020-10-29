@@ -12,5 +12,7 @@ if [ -f /certs/recreate ]; then
     mv /certs/recreate /certs/recreate.done
 fi
 
+chown nginx:www-data -R /nextcloud/
+
 php-fpm7 -D
 nginx -g "daemon off;"
