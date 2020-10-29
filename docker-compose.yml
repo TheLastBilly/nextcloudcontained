@@ -1,0 +1,29 @@
+version: '3'
+
+volumes:
+    nextcloud_db:
+    nextcloud_data:
+    nextcloud_config:
+
+services:
+    db:
+        image: mariadb
+        command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+        restart: always
+        volumes:
+          - nextcloud_db:/var/lib/mysql
+        env_file:
+          - variables.env
+    
+    app:
+        image: thelastbilly/nextcloudcontained:20.0.0
+        build: .
+        links:
+            - db
+        volumes:
+            - nextcloud_data:/nextcloud/data
+            - nextcloud_config:/nextcloud/config
+            - ./certs:/certs
+        ports:
+            - "9200:443"
+        restart: always
