@@ -2,7 +2,7 @@ FROM nginx:alpine
 
 LABEL maintainer="Jose Ricardo jtmonegro@gmail.com"
 
-ENV NEXTCLOUD_VERSION=20.0.0
+ENV NEXTCLOUD_VERSION=20.0.1
 
 RUN apk add \
         unzip \

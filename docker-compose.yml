@@ -16,8 +16,8 @@ services:
           - variables.env
     
     app:
-        image: thelastbilly/nextcloudcontained:20.0.0
-        # build: .
+        image: thelastbilly/nextcloudcontained:20.0.1
+        #build: .
         links:
             - db
         volumes:
