@@ -2,6 +2,8 @@
 A [Nextcloud](https://nextcloud.com/) docker image for the lazy.
 
 ## Setup
+- Clone the [NextcloudContained](https://github.com/TheLastBilly/nextcloudcontained) repository into your computer and `cd` into it.
+
 - Edit **variables.env** with your settings:
     - `MYSQL_ROOT_PASSWORD`: Password for Nextcloud's database
     - `MYSQL_PASSWORD`: Password for Nextcloud's database (should be the same as the one in `MYSQL_ROOT_PASSWORD`)
