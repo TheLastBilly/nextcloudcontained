@@ -9,6 +9,8 @@ A [Nextcloud](https://nextcloud.com/) docker image for the lazy.
     - `MYSQL_PASSWORD`: Password for Nextcloud's database (should be the same as the one in `MYSQL_ROOT_PASSWORD`)
     - `MYSQL_DATABASE`: Name of the database for nextcloud. Leave this as is if you don't know what you're doing.
     - `MYSQL_USER`: Username for Nextcloud's database. Leave this as is if you don't know what you're doing.
+    - `UID`: UID for the nextcloud process.
+    - `GID`: GID for the nextcloud process.
 
     ***Note:*** *Make sure you use a secure password for the database, it will work with the default one, but you know... don't*
 
