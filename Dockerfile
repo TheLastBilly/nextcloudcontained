@@ -4,7 +4,7 @@ LABEL maintainer="Jose Ricardo jtmonegro@gmail.com"
 
 ENV NEXTCLOUD_VERSION=20.0.1
 
-RUN apk add \
+RUN apk add --no-cache \
         unzip \
         wget \
         php7-fpm \
@@ -20,7 +20,8 @@ RUN apk add \
         nextcloud-mysql \
         mariadb \
         mariadb-client \
-        openssl
+        openssl \
+        shadow
 
 COPY ./settings.csr /settings.csr
 COPY ./gen_certs.sh /gen_certs.sh

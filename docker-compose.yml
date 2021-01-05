@@ -17,7 +17,7 @@ services:
     
     app:
         image: thelastbilly/nextcloudcontained:20.0.1
-        #build: .
+        build: .
         links:
             - db
         volumes:
@@ -27,3 +27,5 @@ services:
         ports:
             - "9200:443"
         restart: always
+        env_file:
+          - variables.env
