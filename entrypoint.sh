@@ -15,6 +15,9 @@ fi
 usermod -u $UID nginx
 groupmod -g $GID www-data
 
+find / -group $DEFAULT_GID -exec chgrp -h www-data {} \;
+find / -user $DEFAULT_UID -exec chown -h nginx {} \;
+
 chown nginx:www-data -R /nextcloud/data/
 chown nginx:www-data -R /nextcloud/config/
 

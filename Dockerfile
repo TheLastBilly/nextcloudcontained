@@ -4,6 +4,9 @@ LABEL maintainer="Jose Ricardo jtmonegro@gmail.com"
 
 ENV NEXTCLOUD_VERSION=20.0.1
 
+ENV DEFAULT_UID=3000
+ENV DEFAULT_GID=3000
+
 RUN apk add --no-cache \
         unzip \
         wget \
@@ -26,14 +29,15 @@ RUN apk add --no-cache \
 COPY ./settings.csr /settings.csr
 COPY ./gen_certs.sh /gen_certs.sh
 
+RUN usermod -u $DEFAULT_UID nginx
+RUN groupmod -g $DEFAULT_GID www-data
+
 COPY ./install_nextcloud.sh /install_nextcloud.sh
 RUN sh /install_nextcloud.sh
 
 RUN mkdir -p /run/nginx
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
-RUN addgroup --gid 3000 --system php
-RUN adduser --uid 3000 --system --disabled-password php
 RUN mkdir /var/run/php/
 COPY ./www.conf /etc/php7/php-fpm.d/www.conf
 
