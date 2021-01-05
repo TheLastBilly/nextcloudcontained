@@ -12,14 +12,14 @@ if [ -f /certs/recreate ]; then
     mv /certs/recreate /certs/recreate.done
 fi
 
-usermod -u $UID nginx
-groupmod -g $GID www-data
+groupadd -g $GID php
+useradd -u $UID -g php php
+usermod -aG www-data php
 
-find / -group $DEFAULT_GID -exec chgrp -h www-data {} \;
-find / -user $DEFAULT_UID -exec chown -h nginx {} \;
+su - php
 
-chown nginx:www-data -R /nextcloud/data/
-chown nginx:www-data -R /nextcloud/config/
+chown php:www-data -R /nextcloud/data/
+chown php:www-data -R /nextcloud/config/
 
 php-fpm7 -D
 nginx -g "daemon off;"
