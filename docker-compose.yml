@@ -2,6 +2,7 @@ version: '3'
 
 volumes:
     nextcloud_db:
+    nextcloud_install:
     nextcloud_data:
     nextcloud_config:
 
@@ -17,10 +18,11 @@ services:
     
     app:
         image: thelastbilly/nextcloudcontained:20.0.1
-        #build: .
+        # build: .
         links:
             - db
         volumes:
+            - nextcloud_install:/nextcloud/
             - nextcloud_data:/nextcloud/data
             - nextcloud_config:/nextcloud/config
             - ./certs:/certs

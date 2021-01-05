@@ -4,6 +4,10 @@ export NEXTCLOUD_DIRECTORY=/nextcloud/$NEXTCLOUD_VERSION/nextcloud
 
 cd /
 
+if [ ! -f /nextcloud/index.php ]; then
+    /install_nextcloud.sh
+fi
+
 if [ -f /certs/recreate ]; then
     sh /gen_certs.sh
     cat cert.crt > /certs/cert.crt
@@ -12,14 +16,10 @@ if [ -f /certs/recreate ]; then
     mv /certs/recreate /certs/recreate.done
 fi
 
-groupadd -g $GID php
-useradd -u $UID -g php php
-usermod -aG www-data php
+usermod -u $UID nginx
+groupmod -g $GID www-data
 
-su - php
-
-chown php:www-data -R /nextcloud/data/
-chown php:www-data -R /nextcloud/config/
+chown nginx:www-data /nextcloud/
 
 php-fpm7 -D
 nginx -g "daemon off;"
