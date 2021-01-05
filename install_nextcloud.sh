@@ -6,5 +6,5 @@ wget "https://download.nextcloud.com/server/releases/nextcloud-$NEXTCLOUD_VERSIO
 unzip -o "nextcloud-$NEXTCLOUD_VERSION.zip"
 rm -rf "nextcloud-$NEXTCLOUD_VERSION.zip"
 chown nginx:www-data -R /nextcloud/
-chmod a+rw -R /nextcloud/
+chmod 0770 -R /nextcloud/
 echo "Done installing!"
