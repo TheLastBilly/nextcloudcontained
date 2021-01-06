@@ -20,11 +20,7 @@ RUN apk add --no-cache \
         nextcloud-mysql \
         mariadb \
         mariadb-client \
-        openssl \
         shadow
-
-COPY ./settings.csr /settings.csr
-COPY ./gen_certs.sh /gen_certs.sh
 
 COPY ./install_nextcloud.sh /install_nextcloud.sh
 RUN mkdir -p /nextcloud/data
