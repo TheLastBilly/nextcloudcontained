@@ -18,7 +18,7 @@ services:
     
     app:
         image: thelastbilly/nextcloudcontained:20.0.1
-        # build: .
+        build: .
         links:
             - db
         volumes:
