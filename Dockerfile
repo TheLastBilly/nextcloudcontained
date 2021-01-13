@@ -23,8 +23,7 @@ RUN apk add --no-cache \
         shadow
 
 COPY ./install_nextcloud.sh /install_nextcloud.sh
-RUN mkdir -p /nextcloud/data
-RUN mkdir -p /nextcloud/config
+RUN mkdir /nextcloud
 
 RUN mkdir -p /run/nginx
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
@@ -33,5 +32,9 @@ RUN mkdir /var/run/php/
 COPY ./www.conf /etc/php7/php-fpm.d/www.conf
 
 COPY ./entrypoint.sh /entrypoint.sh
+
+RUN mkdir /installations
+RUN mkdir /data
+RUN mkdir /config
 
 CMD /entrypoint.sh

@@ -4,9 +4,11 @@ export NEXTCLOUD_DIRECTORY=/nextcloud/$NEXTCLOUD_VERSION/nextcloud
 
 cd /
 
-if [ ! -f /nextcloud/index.php ]; then
+if [ ! -d /installations/"$NEXTCLOUD_VERSION"/nextcloud ]; then
     /install_nextcloud.sh
 fi
+
+cp -r /installations/"$NEXTCLOUD_VERSION"/nextcloud/* /nextcloud/
 
 usermod -u $UID nginx
 groupmod -g $GID www-data

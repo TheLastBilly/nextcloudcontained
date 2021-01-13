@@ -17,16 +17,16 @@ services:
           - variables.env
     
     app:
-        image: thelastbilly/nextcloudcontained:20.0.1
+        image: thelastbilly/nextcloud:latest
         build: .
         links:
             - db
         volumes:
-            - nextcloud_install:/nextcloud/
-            - nextcloud_data:/nextcloud/data
-            - nextcloud_config:/nextcloud/config
+            - nextcloud_install:/installations
+            - nextcloud_data:/data
+            - nextcloud_config:/config
         ports:
-            - "80:80"
+            - "8080:80"
         restart: always
         env_file:
           - variables.env
