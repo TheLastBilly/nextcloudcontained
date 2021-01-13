@@ -5,6 +5,7 @@ A [Nextcloud](https://nextcloud.com/) docker image for the lazy.
 - Clone the [NextcloudContained](https://github.com/TheLastBilly/nextcloudcontained) repository into your computer and `cd` into it.
 
 - Edit **variables.env** with your settings:
+    - `NEXTCLOUD_VERSION`: Nextcloud version. It's "optional", but it points to 20.0.1 by default, so you may want to set it to a newer version.
     - `MYSQL_ROOT_PASSWORD`: Password for Nextcloud's database
     - `MYSQL_PASSWORD`: Password for Nextcloud's database (should be the same as the one in `MYSQL_ROOT_PASSWORD`)
     - `MYSQL_DATABASE`: Name of the database for nextcloud. Leave this as is if you don't know what you're doing.
@@ -25,7 +26,7 @@ A [Nextcloud](https://nextcloud.com/) docker image for the lazy.
     ```bash
     docker-compose up -d
     ```
-    You should now be able to access Nextcloud from `https://[your host]:[port from docker-compose.yml]`
+    You should now be able to access Nextcloud from `http://[your host]:[port from docker-compose.yml]`
 
 - In the container setup, use the following settings:
     - `Username`: Username for your admin account
