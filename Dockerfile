@@ -20,6 +20,7 @@ RUN apk add --no-cache \
         nextcloud-mysql \
         mariadb \
         mariadb-client \
+        rsync \
         shadow
 
 COPY ./install_nextcloud.sh /install_nextcloud.sh
@@ -34,7 +35,7 @@ COPY ./www.conf /etc/php7/php-fpm.d/www.conf
 COPY ./entrypoint.sh /entrypoint.sh
 
 RUN mkdir /installations
-RUN mkdir /data
-RUN mkdir /config
+RUN mkdir /nextcloud/data
+RUN mkdir /nextcloud/config
 
 CMD /entrypoint.sh
