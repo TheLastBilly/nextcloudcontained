@@ -16,11 +16,9 @@ A [Nextcloud](https://nextcloud.com/) docker image for the lazy.
     ***Note:*** *Make sure you use a secure password for the database, it will work with the default one, but you know... don't*
 
 - Edit the port number for the Nextcloud installation. This will determine the url for the instance. (i.e: https://localhost:9200, would be the default one)
-***Note:*** ***DO NOT*** *change the `:443` part of the ports section, this is required for the image to work.*
+***Note:*** ***DO NOT*** *change the `:80` part of the ports section, this is required for the image to work.*
 
-- **(Optional)** Move your ssl certificate files into the **certs** folder. Use **cert.crt** for the certificate and **cert.key** for the key file. **IMPORTANT**, make sure to delete the **recreate** file in the **certs** folder.
-
-    If you decide not to do this step, **NextcloudContained** will create a self-signed certificate for you.
+- Comment out `build: .` for `#build: .`, just so you don't build the image all over again.
 
 - Start the container using the following command:
     ```bash
