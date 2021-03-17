@@ -11,14 +11,14 @@ fi
 config_opt=""
 data_opt=""
 if [ ! -z "$(ls -A /nextcloud/config)" ]; then
-    config_opt="--exclude=config/"
+    config_opt=" --exclude=config/"
 fi
 if [ ! -z "$(ls -A /nextcloud/data)" ]; then
-    data_opt="--exclude=data/"
+    data_opt=" --exclude=data/"
 fi
 
 echo "Loading nextcloud installation..."
-rsync -aq /installations/"$NEXTCLOUD_VERSION"/nextcloud /nextcloud "$config_opt" "$data_opt" 
+rsync -aq /installations/$NEXTCLOUD_VERSION/nextcloud/ /nextcloud"$config_opt""$data_opt"
 echo "Done!"
 
 usermod -u $UID nginx
