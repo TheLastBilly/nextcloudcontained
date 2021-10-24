@@ -8,6 +8,9 @@ if [ ! -d /installations/"$NEXTCLOUD_VERSION"/nextcloud ]; then
     /install_nextcloud.sh
 fi
 
+usermod -u $UID nginx
+groupmod -g $GID www-data
+
 config_opt=""
 data_opt=""
 if [ ! -z "$(ls -A /nextcloud/config)" ]; then
@@ -21,10 +24,11 @@ echo "Loading nextcloud installation..."
 rsync -aq /installations/$NEXTCLOUD_VERSION/nextcloud/ /nextcloud"$config_opt""$data_opt"
 echo "Done!"
 
-usermod -u $UID nginx
-groupmod -g $GID www-data
-
+echo "Applying file permissions..."
 chown nginx:www-data -R /nextcloud/
+echo "Done!"
 
+echo "Nextcloud started"
 php-fpm7 -D
 nginx -g "daemon off;"
+echo "Nextcloud terminated"

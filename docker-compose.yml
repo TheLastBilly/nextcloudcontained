@@ -2,31 +2,37 @@ version: '3'
 
 volumes:
     nextcloud_db:
-    nextcloud_install:
-    nextcloud_data:
-    nextcloud_config:
 
 services:
     db:
         image: mariadb
-        command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+        command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --innodb-read-only-compressed=OFF
         restart: always
         volumes:
           - nextcloud_db:/var/lib/mysql
         env_file:
           - variables.env
+        networks:
+            backend:
     
     app:
         image: thelastbilly/nextcloud:latest
         build: .
+        container_name: nextcloud
         links:
             - db
         volumes:
-            - nextcloud_install:/installations
-            - nextcloud_data:/data
-            - nextcloud_config:/config
-        ports:
-            - "8080:80"
+            - ./installations:/installations
+            - /mnt/main/Vault/nextcloud:/data
+            - ./config:/config
+        networks:
+            backend:
+            hoster:
+                ipv4_address: 10.30.30.23
         restart: always
         env_file:
           - variables.env
+networks:
+    hoster:
+        external: true
+    backend:
