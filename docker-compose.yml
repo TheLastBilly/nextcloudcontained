@@ -23,7 +23,7 @@ services:
             - db
         volumes:
             - ./installations:/installations
-            - /mnt/main/Vault/nextcloud:/data
+            - ./data:/data
             - ./config:/config
         networks:
             backend:
